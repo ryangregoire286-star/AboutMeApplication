@@ -77,7 +77,7 @@ class MainActivity : ComponentActivity() {
         ) { Text(
                 textUpper.getTextValue("About-Me Application"),
                 textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth().padding(top = (25.dp * 2) * 4),
+                modifier = Modifier.fillMaxWidth().padding(top = (20.dp * 2) * 4),
                 fontSize = (((13.sp * 2)))
             )
         }
