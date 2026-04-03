@@ -22,6 +22,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import java.time.LocalDate
@@ -41,6 +43,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
 
+            WelcomeUserMessage()
             CreateTitle()
             CenteredMenu()
             GetDateNow()
@@ -67,6 +70,24 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+
+    @Composable
+    fun WelcomeUserMessage() {
+        Box(
+            contentAlignment = Center
+        ) {
+            Text(
+                "Welcome Everyone...",
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth().padding(top = (15.dp * 2) * 4),
+                fontSize = (((13.sp * 2))),
+                letterSpacing = TextUnit(4f, TextUnitType.Sp)
+
+            )
+        }
+
+    }
+
     @Composable
     fun CreateTitle() {
 
@@ -74,11 +95,13 @@ class MainActivity : ComponentActivity() {
 
         Box(
             contentAlignment = Center
-        ) { Text(
+        ) {
+            Text(
                 textUpper.getTextValue("About-Me Application"),
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth().padding(top = (20.dp * 2) * 4),
-                fontSize = (((13.sp * 2)))
+                fontSize = (((7.sp * 2))),
+                letterSpacing = TextUnit(2f, TextUnitType.Sp)
             )
         }
     }
@@ -112,7 +135,7 @@ class MainActivity : ComponentActivity() {
             contentAlignment = Center,
         ) {
             Text(
-                text = "Hello I am Ryan James | Android Developer",
+                text = "I am Ryan James | Android Developer",
                 textAlign = TextAlign.Center,
                 fontFamily = FontFamily.SansSerif,
                 fontWeight = FontWeight.Medium,
