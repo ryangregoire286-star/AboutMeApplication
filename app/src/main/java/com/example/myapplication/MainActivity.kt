@@ -62,7 +62,7 @@ class MainActivity : ComponentActivity() {
           Text(
 
               "Today's Date: $dateNow",
-              modifier = Modifier.fillMaxWidth().padding(top = (35.dp * 2) * 4),
+              modifier = Modifier.fillMaxWidth().padding(top = (29.dp * 2) * 4),
               textAlign = TextAlign.Center,
               fontSize = ((15.sp * 2) / 2)
           )
@@ -120,7 +120,7 @@ class MainActivity : ComponentActivity() {
                     containerColor = Color.Black,
                     contentColor = Color.White,
                 ),
-                modifier = Modifier.padding(bottom = 190.dp).size(width = 400.dp / 2, height = 85.dp / 2)
+                modifier = Modifier.padding(bottom = 190.dp).size(width = 700.dp / 2, height = 85.dp / 2)
             ) {
                 Text(
                     "Get Info from Me"
@@ -139,8 +139,8 @@ class MainActivity : ComponentActivity() {
                 textAlign = TextAlign.Center,
                 fontFamily = FontFamily.SansSerif,
                 fontWeight = FontWeight.Medium,
-                fontSize = 35.sp / 2,
-                modifier = Modifier.fillMaxWidth().padding(top = 500.dp / 2),
+                fontSize = 30.sp / 2,
+                modifier = Modifier.fillMaxWidth().padding(top = 400.dp / 2),
                 color = Color.Black
             )
         }
