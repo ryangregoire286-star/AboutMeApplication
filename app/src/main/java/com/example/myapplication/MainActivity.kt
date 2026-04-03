@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -23,6 +24,15 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import java.time.LocalDate
+
+class UpperTextMethod {
+
+    fun getTextValue(textValue:String): String {
+
+        return textValue.uppercase()
+    }
+}
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +43,7 @@ class MainActivity : ComponentActivity() {
 
             CreateTitle()
             CenteredMenu()
+            GetDateNow()
             CreateActiveButton {
                 println("Hello User Working...")
             }
@@ -40,12 +51,31 @@ class MainActivity : ComponentActivity() {
     }
 
     @Composable
-    fun CreateTitle() {
+    fun GetDateNow() {
+        val dateNow: LocalDate = LocalDate.now()
         Box(
             contentAlignment = Center
         ) {
-            Text(
-                "About-Me Application",
+          Text(
+
+              "Today's Date: $dateNow",
+              modifier = Modifier.fillMaxWidth().padding(top = (35.dp * 2) * 4),
+              textAlign = TextAlign.Center,
+              fontSize = ((15.sp * 2) / 2)
+          )
+
+        }
+    }
+
+    @Composable
+    fun CreateTitle() {
+
+        val textUpper = UpperTextMethod()
+
+        Box(
+            contentAlignment = Center
+        ) { Text(
+                textUpper.getTextValue("About-Me Application"),
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth().padding(top = (25.dp * 2) * 4),
                 fontSize = (((13.sp * 2)))
@@ -59,10 +89,15 @@ class MainActivity : ComponentActivity() {
             modifier = Modifier.fillMaxWidth().fillMaxHeight(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
+
         ) {
             Button(
                 onClick = { onClicking() },
-                modifier = Modifier.size(width = 400.dp / 2, height = 85.dp / 2)
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Black,
+                    contentColor = Color.White,
+                ),
+                modifier = Modifier.padding(bottom = 190.dp).size(width = 400.dp / 2, height = 85.dp / 2)
             ) {
                 Text(
                     "Get Info from Me"
