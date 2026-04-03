@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.R.attr.letterSpacing
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -22,9 +23,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import java.time.LocalDate
+import java.util.Calendar
 
 class UpperTextMethod {
 
@@ -41,11 +45,17 @@ class MainActivity : ComponentActivity() {
 
         setContent {
 
+            WelcomeUserMessage()
             CreateTitle()
-            CenteredMenu()
             GetDateNow()
+            DayOfTime()
+
             CreateActiveButton {
                 println("Hello User Working...")
+            }
+
+            BottomDropButton {
+                println("Working...")
             }
         }
     }
@@ -56,15 +66,114 @@ class MainActivity : ComponentActivity() {
         Box(
             contentAlignment = Center
         ) {
-          Text(
+            Text(
 
-              "Today's Date: $dateNow",
-              modifier = Modifier.fillMaxWidth().padding(top = (35.dp * 2) * 4),
-              textAlign = TextAlign.Center,
-              fontSize = ((15.sp * 2) / 2)
-          )
+                "Today's Date: $dateNow",
+                modifier = Modifier.fillMaxWidth().padding(top = (24.dp * 2) * 4),
+                textAlign = TextAlign.Center,
+                fontSize = ((15.sp * 2) / 2)
+            )
 
         }
+    }
+
+
+    @Composable
+    fun BottomDropButton(click: () -> Unit) {
+
+        Column(
+
+            modifier = Modifier.fillMaxWidth().fillMaxHeight(),
+            verticalArrangement = Arrangement.Center,
+            horizontalAlignment = Alignment.CenterHorizontally
+
+        ) {
+            Button(
+
+                onClick = { click() },
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Black,
+                    contentColor = Color.White,
+                ),
+
+                modifier = Modifier.padding(top = 800.dp)
+                    .size(width = 700.dp / 2, height = 85.dp / 2)
+            ) {
+                Text(
+                    "Next Page",
+                    textAlign = TextAlign.Center,
+                    fontSize = ((15.sp * 2) / 2)
+                )
+            }
+        }
+    }
+
+    @Composable
+    fun DayOfTime() {
+        val timeNowHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+
+        if (timeNowHour.dp < 11.dp) {
+
+            Box(
+                contentAlignment = Center
+            ) {
+
+                Text(
+                    "Good Morning",
+                    modifier = Modifier.fillMaxWidth().padding(top = (15.dp * 2) * 4),
+                    textAlign = TextAlign.Center,
+                    fontSize = ((15.sp * 2) / 2)
+                )
+            }
+        } else if (timeNowHour.dp > 11.dp) {
+
+            Box(
+                contentAlignment = Center
+            ) {
+
+                Text(
+                    "Good Afternoon",
+                    modifier = Modifier.fillMaxWidth().padding(top = (15.dp * 2) * 4),
+                    textAlign = TextAlign.Center,
+                    fontSize = ((15.sp * 2) / 2)
+                )
+            }
+
+        } else if (timeNowHour.dp > 16.dp) {
+
+            Box(
+                contentAlignment = Center
+            ) {
+
+                Text(
+                    "Good Evening",
+                    modifier = Modifier.fillMaxWidth().padding(top = (15.dp * 2) * 4),
+                    textAlign = TextAlign.Center,
+                    fontSize = ((15.sp * 2) / 2)
+                )
+            }
+
+        }
+    }
+
+    @Composable
+    fun WelcomeUserMessage() {
+
+        val textUpper = UpperTextMethod()
+
+        Box(
+            contentAlignment = Center
+        ) {
+            Text(
+                textUpper.getTextValue("Welcome Everyone..."),
+                textAlign = TextAlign.Center,
+                modifier = Modifier.fillMaxWidth().padding(top = (10.dp * 2) * 4),
+                fontSize = (((12.sp * 2))),
+                letterSpacing = TextUnit(4f, TextUnitType.Sp),
+                fontWeight = FontWeight.Bold
+            )
+        }
+
     }
 
     @Composable
@@ -74,30 +183,33 @@ class MainActivity : ComponentActivity() {
 
         Box(
             contentAlignment = Center
-        ) { Text(
+        ) {
+            Text(
                 textUpper.getTextValue("About-Me Application"),
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth().padding(top = (20.dp * 2) * 4),
-                fontSize = (((13.sp * 2)))
+                fontSize = ((9.sp * 2)),
+                letterSpacing = TextUnit(2f, TextUnitType.Sp)
             )
         }
     }
 
     @Composable
-    fun CreateActiveButton(onClicking:() -> Unit) {
-        Column (
+    fun CreateActiveButton(onClicking: () -> Unit) {
+        Column(
             modifier = Modifier.fillMaxWidth().fillMaxHeight(),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally,
 
-        ) {
+            ) {
             Button(
                 onClick = { onClicking() },
                 colors = ButtonDefaults.buttonColors(
                     containerColor = Color.Black,
                     contentColor = Color.White,
                 ),
-                modifier = Modifier.padding(bottom = 190.dp).size(width = 400.dp / 2, height = 85.dp / 2)
+                modifier = Modifier.padding(top = 650.dp)
+                    .size(width = 700.dp / 2, height = 85.dp / 2)
             ) {
                 Text(
                     "Get Info from Me"
@@ -105,22 +217,26 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+}
 
-    @Composable
+
+/*
+
+        @Composable
     fun CenteredMenu() {
         Box(
             contentAlignment = Center,
         ) {
             Text(
-                text = "Hello I am Ryan James | Android Developer",
+                text = "I am Ryan James | Android Developer",
                 textAlign = TextAlign.Center,
                 fontFamily = FontFamily.SansSerif,
                 fontWeight = FontWeight.Medium,
-                fontSize = 35.sp / 2,
-                modifier = Modifier.fillMaxWidth().padding(top = 500.dp / 2),
+                fontSize = 30.sp / 2,
+                modifier = Modifier.fillMaxWidth().padding(top = 400.dp / 2),
                 color = Color.Black
             )
         }
     }
-}
 
+*/
