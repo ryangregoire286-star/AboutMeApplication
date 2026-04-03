@@ -79,7 +79,7 @@ class MainActivity : ComponentActivity() {
             Text(
                 "Welcome Everyone...",
                 textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth().padding(top = (15.dp * 2) * 4),
+                modifier = Modifier.fillMaxWidth().padding(top = (10.dp * 2) * 4),
                 fontSize = (((13.sp * 2))),
                 letterSpacing = TextUnit(4f, TextUnitType.Sp)
 
@@ -100,7 +100,7 @@ class MainActivity : ComponentActivity() {
                 textUpper.getTextValue("About-Me Application"),
                 textAlign = TextAlign.Center,
                 modifier = Modifier.fillMaxWidth().padding(top = (20.dp * 2) * 4),
-                fontSize = (((7.sp * 2))),
+                fontSize = (((7.5.sp * 2))),
                 letterSpacing = TextUnit(2f, TextUnitType.Sp)
             )
         }
