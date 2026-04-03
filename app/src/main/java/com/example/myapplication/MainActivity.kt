@@ -27,6 +27,7 @@ import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import java.time.LocalDate
+import java.util.Calendar
 
 class UpperTextMethod {
 
@@ -47,6 +48,8 @@ class MainActivity : ComponentActivity() {
             CreateTitle()
             CenteredMenu()
             GetDateNow()
+            DayOfTime()
+
             CreateActiveButton {
                 println("Hello User Working...")
             }
@@ -70,6 +73,58 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+
+    @Composable
+    fun DayOfTime() {
+        val timeNowHour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+
+        if (timeNowHour.dp < 12.dp) {
+
+            Box(
+                contentAlignment = Center
+            ) {
+
+                Text(
+                    "Good Morning",
+                    modifier = Modifier.fillMaxWidth().padding(top = (15.dp * 2) * 4),
+                    textAlign = TextAlign.Center,
+                    fontSize = ((15.sp * 2) / 2)
+                )
+            }
+        }
+
+        else if (timeNowHour.dp > 11.dp) {
+
+            Box(
+                contentAlignment = Center
+            ) {
+
+                Text(
+                    "Good Afternoon",
+                    modifier = Modifier.fillMaxWidth().padding(top = (15.dp * 2) * 4),
+                    textAlign = TextAlign.Center,
+                    fontSize = ((15.sp * 2) / 2)
+                )
+            }
+
+        }
+
+        else if (timeNowHour.dp > 16.dp) {
+
+            Box(
+                contentAlignment = Center
+            ) {
+
+                Text(
+                    "Good Evening",
+                    modifier = Modifier.fillMaxWidth().padding(top = (15.dp * 2) * 4),
+                    textAlign = TextAlign.Center,
+                    fontSize = ((15.sp * 2) / 2)
+                )
+            }
+
+        }
+    }
 
     @Composable
     fun WelcomeUserMessage() {
